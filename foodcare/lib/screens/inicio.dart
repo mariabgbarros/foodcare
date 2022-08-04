@@ -17,7 +17,7 @@ class Inicio extends StatelessWidget{
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              child:  Image.asset('assets/images/logoInicio.png'),
+              child:  Image.asset('assets/images/logoinicio.png'),
             ),
             Container(
               padding: EdgeInsets.all(20.0),
