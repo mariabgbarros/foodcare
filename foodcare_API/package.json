@@ -4,11 +4,13 @@
   "description": "API do projeto FoodCare",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "nodemon src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^2.0.19",
     "pg": "^8.7.3"
   }
 }
