@@ -7,9 +7,9 @@ module.exports = {
         },
     },
     host: 'ec2-34-203-182-65.compute-1.amazonaws.com',
-    user: 'hiqrayikkraxqf',
-    password: '7ab318d10817ad647f2be9dadfeb85235c1b5da431214f7743b8d04a3100a828',
-    database: 'd4afo85q39r002',
+    user: 'hjiaaxwneihezr',
+    password: '8cc31e459e7e110be33b1e0d452c1033749174f42607f9ef891061c7e3445392',
+    database: 'd5ls3unrcr3ka6',
     port: 5432,
     define: {
         timestamps: true,
