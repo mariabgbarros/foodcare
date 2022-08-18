@@ -100,7 +100,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                       widget.paginaAberta = 3;
                     });
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Dieta())
+                      MaterialPageRoute(builder: (context) => Perfil())
                     );
                   },
                   child: Column(
