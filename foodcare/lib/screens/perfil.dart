@@ -12,7 +12,7 @@ class Perfil extends StatelessWidget{
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 240, 66, 61),
       ),
-      body: Center(
+      body: SingleChildScrollView( child: Center(
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -64,7 +64,7 @@ class Perfil extends StatelessWidget{
           ],
         )
       ),
-      bottomNavigationBar: CustomNavBar(paginaAberta:3),
+      ),bottomNavigationBar: CustomNavBar(paginaAberta:3),
     );
   }
 }

@@ -12,8 +12,9 @@ class PieChartPageState extends State {
   int touchedIndex = 0;
 
   @override
-  Widget build(BuildContext context) => Card(
-        child: Column(
+  Widget build(BuildContext context) => Container( height: 100, child: SingleChildScrollView(child:  /*SizedBox(height:  MediaQuery.of(context).size.height, width: MediaQuery.of(context).size.width, child:*/ Card(
+        
+         child: Column(
           children: <Widget>[
             Expanded(
               child: PieChart(
@@ -40,6 +41,7 @@ class PieChartPageState extends State {
               ),
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
@@ -50,5 +52,6 @@ class PieChartPageState extends State {
             ),
           ],
         ),
-      );
+      
+  )));
 }
