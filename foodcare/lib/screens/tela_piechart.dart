@@ -17,7 +17,8 @@ class PieChartPageState extends State {
          child: Column(
           children: <Widget>[
             Expanded(
-              child: PieChart(
+              child: SizedBox(
+                height: 200.0, child: PieChart(
                 PieChartData(
                   pieTouchData: PieTouchData(
                     touchCallback: (FlTouchEvent event, pieTouchResponse) {
@@ -39,8 +40,8 @@ class PieChartPageState extends State {
                   sections: getSections(touchedIndex),
                 ),
               ),
-            ),
-            Row(
+            )
+            /*Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,8 +50,9 @@ class PieChartPageState extends State {
                   child: IndicatorsWidget(),
                 ),
               ],
-            ),
-          ],
+            ), */
+            )],
+            
         ),
       
   )));

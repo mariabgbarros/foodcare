@@ -1,6 +1,3 @@
-import 'package:flutter/foundation.dart';
-import 'package:foodcare/screens/cadastro.dart';
-import 'package:foodcare/screens/login.dart';
 import 'package:foodcare/nav/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
