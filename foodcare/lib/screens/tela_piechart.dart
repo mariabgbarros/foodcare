@@ -12,7 +12,9 @@ class PieChartPageState extends State {
   int touchedIndex = 0;
 
   @override
-  Widget build(BuildContext context) => Container( height: 100, child: SingleChildScrollView(child:  /*SizedBox(height:  MediaQuery.of(context).size.height, width: MediaQuery.of(context).size.width, child:*/ Card(
+  Widget build(BuildContext context) => 
+  
+  Scaffold( body: SizedBox(height:  MediaQuery.of(context).size.height, width: MediaQuery.of(context).size.width, child: SingleChildScrollView(child: Card(
         
          child: Column(
           children: <Widget>[
@@ -55,5 +57,5 @@ class PieChartPageState extends State {
             
         ),
       
-  )));
+  ))));
 }

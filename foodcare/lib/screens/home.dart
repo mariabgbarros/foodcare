@@ -2,6 +2,7 @@ import 'package:foodcare/nav/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:foodcare/screens/tela_piechart.dart';
+import 'package:foodcare/screens/telagrafico2.dart';
 
 class Home extends StatelessWidget{
   int touchedIndex = -1;
@@ -16,11 +17,13 @@ class Home extends StatelessWidget{
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            PieChartPage(),
+            PieChartPage2(),
           ],
         )
       ),
       bottomNavigationBar: CustomNavBar(paginaAberta:0),
     );
+
+     //PieChartPage2();
   }
 }

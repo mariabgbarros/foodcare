@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/home.dart';
+import 'package:foodcare/screens/tela_piechart.dart';
+import 'package:foodcare/screens/telagrafico2.dart';
 
 class Login extends StatelessWidget{
   @override
@@ -57,7 +59,9 @@ class Login extends StatelessWidget{
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          //MaterialPageRoute(builder: (context) => Home()),
+                                                    MaterialPageRoute(builder: (context) => PieChartPage2()),
+
                         );
                       },
                     ),
