@@ -25,31 +25,35 @@ class _CustomNavBarState extends State<CustomNavBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              MaterialButton( //home
-                minWidth: 40,
-                onPressed:() {
-                  setState(() {
-                    widget.paginaAberta = 0;
-                  });
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Home())
-                  );
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.home,
-                      color: widget.paginaAberta == 0 ? Colors.redAccent: Colors.white
-                    ),
-                  ],
+            SingleChildScrollView( 
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton( //home
+                    minWidth: 40,
+                    padding: EdgeInsets.all(20.0),
+                    onPressed:() {
+                      setState(() {
+                        widget.paginaAberta = 0;
+                      });
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => Home())
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          
+                          Icons.home,
+                          color: widget.paginaAberta == 0 ? Colors.redAccent: Colors.white
+                        ),
+                      ],
                 ),
               ),
               MaterialButton( //IA
                 minWidth: 40,
+                padding: EdgeInsets.all(20.0),
                 onPressed:() {
                   setState(() {
                     widget.paginaAberta = 1;
@@ -70,10 +74,13 @@ class _CustomNavBarState extends State<CustomNavBar> {
               )
             ],
             ),
-            Row(
+            ),
+           SingleChildScrollView(
+             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 MaterialButton( // dieta
+                padding: EdgeInsets.all(20.0),
                   minWidth: 40,
                   onPressed:() {
                     setState(() {
@@ -95,6 +102,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 ),
                 MaterialButton( // perfil
                   minWidth: 40,
+                  padding: EdgeInsets.all(20.0),
                   onPressed:() {
                     setState(() {
                       widget.paginaAberta = 3;
@@ -115,7 +123,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   ),
                 )
               ],
-            )
+              )
+           ),
+
           ],
         ),
       ),
