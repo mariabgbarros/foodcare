@@ -95,10 +95,10 @@ class PieChartSample1State extends State {
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
 
-        const color0 = Color(0xff0293ee);
-        const color1 = Color(0xfff8b250);
-        const color2 = Color(0xff845bef);
-        const color3 = Color(0xff13d38e);
+        const color0 = Color.fromARGB(255, 152, 20, 20);
+        const color1 = Color.fromARGB(255, 202, 65, 65);
+        const color2 = Color.fromARGB(255, 210, 116, 72);
+        const color3 = Color.fromARGB(255, 210, 116, 72);
 
         switch (i) {
           case 0:
@@ -148,15 +148,15 @@ class PieChartSample1State extends State {
             );
           case 3:
             return PieChartSectionData(
-              color: color3.withOpacity(opacity),
+              color: color2.withOpacity(opacity),
               value: 25,
               title: '',
-              radius: 70,
+              radius: 60,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xff0c7f55)),
-              titlePositionPercentageOffset: 0.55,
+                  color: Color(0xff4c3788)),
+              titlePositionPercentageOffset: 0.6,
               borderSide: isTouched
                   ? BorderSide(color: const Color(0xffffffff), width: 6)
                   : BorderSide(color: color2.withOpacity(0)),

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:foodcare/screens/cadastro.dart';
 import 'package:foodcare/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:foodcare/nav/nav_bar.dart';
 
 class Dieta extends StatelessWidget{
   @override
@@ -62,7 +63,7 @@ class Dieta extends StatelessWidget{
             ),
           ],
         )
-      )),           
+      )),bottomNavigationBar: CustomNavBar(paginaAberta:3),           
     );
   }
 }
