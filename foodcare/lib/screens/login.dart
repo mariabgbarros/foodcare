@@ -200,7 +200,7 @@ class _LoginState extends State<Login> {
       if (c) {
         await _network.write(u);
         await dialog(
-          '${u.email} ${u.senha} saved',
+          '${u.email} ${u.senha} logged',
         );
       } else {
         await dialog(
