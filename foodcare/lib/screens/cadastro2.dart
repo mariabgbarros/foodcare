@@ -2,9 +2,35 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/login.dart';
 import 'package:foodcare/screens/inicio.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 
-class Cadastro2 extends StatelessWidget{
+class Cadastro2 extends StatefulWidget{
+  const Cadastro2 ({
+    Key? key,
+  }) : super(key:key);
 
+  @override
+  State<Cadastro2> createState() => _Cadastro2State();
+}
+
+class _Cadastro2State extends State<Cadastro2>{
+
+  final _network = Network(); 
+
+  late TextEditingController _idadeController;
+  late TextEditingController _pesoController;
+  late TextEditingController _alturaController;
+
+  String buttonText = 'Save';
+  int? id;
+
+  @override
+  void initState() {
+    _idadeController  = TextEditingController();
+    _pesoController = TextEditingController();
+    _alturaController = TextEditingController();
+    super.initState();
+  }
   void AlertCadastro() {
 
   }
@@ -25,7 +51,7 @@ class Cadastro2 extends StatelessWidget{
                 Container(
                   padding: EdgeInsets.only(top:50), 
                   child: Text(
-                    "Olá Nome! Só mais alguns passos para efetuarmos o seus cadastro.",
+                    "Olá ${usuario_cadastro.nome}! Só mais alguns passos para efetuarmos o seus cadastro.",
                     style: TextStyle(   
                         fontWeight: FontWeight.bold
                     ),
@@ -34,10 +60,12 @@ class Cadastro2 extends StatelessWidget{
                 Container( //idade
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _idadeController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        labelText: "Idade",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Idade: ",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -45,10 +73,12 @@ class Cadastro2 extends StatelessWidget{
                 Container( //peso
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _pesoController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        labelText: "Peso (kg)",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Peso (kg): ",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -58,8 +88,9 @@ class Cadastro2 extends StatelessWidget{
                   child: TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        labelText: "Altura (cm)",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Altura (cm): ",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),

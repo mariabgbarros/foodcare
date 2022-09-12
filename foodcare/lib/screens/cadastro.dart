@@ -1,8 +1,34 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/cadastro2.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 
-class Cadastro1 extends StatelessWidget{
+class Cadastro1 extends StatefulWidget{
+  const Cadastro1 ({
+    Key? key,
+  }) : super(key:key);
+
+  @override
+  State<Cadastro1> createState() => _Cadastro1State();
+}
+
+class _Cadastro1State extends State<Cadastro1> {
+  final _network = Network(); 
+
+  late TextEditingController _nomeController;
+  late TextEditingController _emailController;
+  late TextEditingController _senhaController;
+
+  String buttonText = 'Save';
+  int? id;
+
+  @override
+  void initState() {
+    _nomeController  = TextEditingController();
+    _emailController = TextEditingController();
+    _senhaController = TextEditingController();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +46,12 @@ class Cadastro1 extends StatelessWidget{
                 Container(
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _nomeController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                        labelText: "Nome",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Nome: ",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -31,10 +59,12 @@ class Cadastro1 extends StatelessWidget{
                 Container(
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Email",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -42,11 +72,13 @@ class Cadastro1 extends StatelessWidget{
                 Container(
                    padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _senhaController,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
-                        labelText: "Senha",
-                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineImputBorder
+                        hintText: "Senha",
+                        hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -82,3 +114,4 @@ class Cadastro1 extends StatelessWidget{
     );
   }
 }
+  
