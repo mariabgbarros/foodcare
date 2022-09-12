@@ -90,7 +90,7 @@ class PieChartSample1State extends State {
 
   List<PieChartSectionData> showingSections() {
     return List.generate(
-      4,
+      3,
       (i) {
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
@@ -98,7 +98,6 @@ class PieChartSample1State extends State {
         const color0 = Color.fromARGB(255, 152, 20, 20);
         const color1 = Color.fromARGB(255, 202, 65, 65);
         const color2 = Color.fromARGB(255, 210, 116, 72);
-        const color3 = Color.fromARGB(255, 210, 116, 72);
 
         switch (i) {
           case 0:
@@ -121,7 +120,7 @@ class PieChartSample1State extends State {
               color: color1.withOpacity(opacity),
               value: 25,
               title: '',
-              radius: 65,
+              radius: 80,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -136,7 +135,7 @@ class PieChartSample1State extends State {
               color: color2.withOpacity(opacity),
               value: 25,
               title: '',
-              radius: 60,
+              radius: 80,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -146,21 +145,7 @@ class PieChartSample1State extends State {
                   ? BorderSide(color: const Color(0xffffffff), width: 6)
                   : BorderSide(color: color2.withOpacity(0)),
             );
-          case 3:
-            return PieChartSectionData(
-              color: color2.withOpacity(opacity),
-              value: 25,
-              title: '',
-              radius: 60,
-              titleStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff4c3788)),
-              titlePositionPercentageOffset: 0.6,
-              borderSide: isTouched
-                  ? BorderSide(color: const Color(0xffffffff), width: 6)
-                  : BorderSide(color: color2.withOpacity(0)),
-            );
+          
           default:
             throw Error();
         }

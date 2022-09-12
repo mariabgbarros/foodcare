@@ -107,9 +107,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     setState(() {
                       widget.paginaAberta = 3;
                     });
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Perfil())
-                    );
+                    //Navigator.of(context).pushReplacement(
+                      //MaterialPageRoute(builder: (context) => PersonCard(
+                        //usuario_cadastro: ,
+                      //))
+                    //);
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

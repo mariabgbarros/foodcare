@@ -10,14 +10,14 @@ class UsuarioCadastro {
   final int? id;
 
 UsuarioCadastro({
-    required this.nome;
+    required this.nome,
     required this.email,
     required this.senha,
-    required this.anoNasc;
-    required this.peso;
-    required this.altura;
-    required this.alergias;
-    required this.objetivos;
+    required this.anoNasc,
+    required this.peso,
+    required this.altura,
+    required this.alergias,
+    required this.objetivos,
     required this.id,
   });
 

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/login.dart';
 import 'package:foodcare/screens/inicio.dart';
+import 'package:foodcare/network/network.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
 
 class Cadastro2 extends StatefulWidget{
@@ -36,6 +37,7 @@ class _Cadastro2State extends State<Cadastro2>{
   }
   @override
   Widget build(BuildContext context) {
+    var usuario_cadastro;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
@@ -63,7 +65,7 @@ class _Cadastro2State extends State<Cadastro2>{
                     controller: _idadeController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Idade: ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
@@ -76,7 +78,7 @@ class _Cadastro2State extends State<Cadastro2>{
                     controller: _pesoController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Peso (kg): ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
@@ -88,7 +90,7 @@ class _Cadastro2State extends State<Cadastro2>{
                   child: TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Altura (cm): ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),

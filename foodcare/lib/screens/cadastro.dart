@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/cadastro2.dart';
+import 'package:foodcare/network/network.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
+import 'package:flutter/src/material/input_border.dart';
 
 class Cadastro1 extends StatefulWidget{
   const Cadastro1 ({
@@ -48,8 +50,9 @@ class _Cadastro1State extends State<Cadastro1> {
                   child: TextFormField(
                     controller: _nomeController,
                     keyboardType: TextInputType.name,
+                    // ignore: prefer_const_constructors
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Nome: ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
@@ -62,7 +65,7 @@ class _Cadastro1State extends State<Cadastro1> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Email",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
@@ -76,7 +79,7 @@ class _Cadastro1State extends State<Cadastro1> {
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Senha",
                         hintStyle: TextStyle(color: Colors.black),
                     ),

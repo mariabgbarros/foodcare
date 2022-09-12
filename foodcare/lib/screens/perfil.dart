@@ -11,7 +11,7 @@ import 'package:foodcare/network/network.dart';
 class PersonCard extends StatelessWidget {
   const PersonCard({
     Key? key,
-    required this.person,
+    required this.usuario_cadastro,
     required this.delete,
     required this.update,
   }) : super(key: key);
@@ -19,8 +19,8 @@ class PersonCard extends StatelessWidget {
   final VoidCallback delete;
   final VoidCallback update;
   final UsuarioCadastro usuario_cadastro;
-  final int idade = DateTime.now() - usuario_cadastro.anoNasc;
-  final int imc = usuario_cadastro.peso / (usuario_cadastro.altura * usuario_cadastro.altura);
+  //final int idade = DateTime.now() - usuario_cadastro.anoNasc;
+  //final int imc = usuario_cadastro.peso / (usuario_cadastro.altura * usuario_cadastro.altura);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,8 @@ class PersonCard extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 240, 66, 61),
       ),
       body: Center(
-        children: <Widget> [
+        child: Column(
+          children: <Widget> [
           Card (
             margin: const EdgeInsets.all(8),
             color: Colors.white70,
@@ -46,8 +47,8 @@ class PersonCard extends StatelessWidget {
                         Text('Peso: ${usuario_cadastro.peso.toString()}'),
                         Text('Idade: ${usuario_cadastro.anoNasc}'),
                         Text('Altura: ${usuario_cadastro.altura.toString()}'),
-                        Text('Objetivo: ${usuario_cadastro.objetivo}'),
-                        Text('IMC: ${imc}'),
+                        Text('Objetivo: ${usuario_cadastro.objetivos}'),
+                        //Text('IMC: ${imc}'),
                       ],
                     ),
                   ),
@@ -71,9 +72,9 @@ class PersonCard extends StatelessWidget {
                         constraints: const BoxConstraints(),
                         padding: EdgeInsets.zero,
                         onPressed: () async {
-                          await Network()
-                                    .delete(usuario_cadastro)
-                                    .whenComplete(usuario_cadastro);
+                          //await Network()
+                                    //.delete(usuario_cadastro)
+                                    //.whenComplete(usuario_cadastro);
                         },
                         icon: const Icon(
                           CupertinoIcons.delete,
@@ -84,8 +85,8 @@ class PersonCard extends StatelessWidget {
                 ],
               ),
             )
-        ] 
-      
+          )] 
+        ),
       ),
     );
   }

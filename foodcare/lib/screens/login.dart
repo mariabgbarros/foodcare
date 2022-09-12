@@ -49,8 +49,8 @@ class _LoginState extends State<Login> {
                   child: TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: ImputDecoration()
-                        border: OutlineImputBorder
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
                         hintText: "Email",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
-                        border: OutlineImputBorder
+                        border: OutlineInputBorder(),
                         hintText: "Senha",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
