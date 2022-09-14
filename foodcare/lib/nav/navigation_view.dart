@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodcare/models/usuario_login.dart';
 import 'package:foodcare/screens/home.dart';
+import 'package:foodcare/screens/dieta.dart';
+import 'package:foodcare/screens/telagrafico2.dart';
 import 'package:http/http.dart' as http;
 
 //import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -42,27 +44,23 @@ class _NavigationViewState extends State<NavigationView> {
           onPageChanged: onTapped,
           controller: pageController,
           children: [
-            //(//map != null) ? Home(usuarioLogin: map) : Home(usuarioLogin: null),
-            //const ProcurarRemedioView(),
-            //const FormMan1View(),
-            //const GraficosView(),
+            //(map != null) ? Home(usuarioLogin: map) : Home(usuarioLogin: null),
+            const PieChartPage2(), //home
+            const Dieta(),
             //(map != null) ? PerfilView(paciente: map) : RankingUbsView(),
             ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 81, 179, 245),
+          backgroundColor: const Color.fromARGB(255, 240, 66, 61),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: 'Procurar'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Denunciar'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.bar_chart_rounded), label: 'Dados'),
+            //BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
+            BottomNavigationBarItem(icon: Icon(Icons.apple), label: 'Dieta'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
           ],
           currentIndex: paginaAtual,
           selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: Colors.white,
           onTap: onTapped,
         ));
   }

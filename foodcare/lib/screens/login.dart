@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/screens/home.dart';
+import 'package:foodcare/screens/perfil.dart';
 import 'package:foodcare/screens/tela_piechart.dart';
 import 'package:foodcare/screens/telagrafico2.dart';
 import 'package:foodcare/models/usuario_login.dart';
@@ -86,11 +87,11 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        /*Navigator.push(
                           context,
                           //MaterialPageRoute(builder: (context) => Home()),
-                                                    MaterialPageRoute(builder: (context) => PieChartPage2()),
-                        );
+                                                    MaterialPageRoute(builder: (context) => PerfilApp()),
+                        );*/
                       },
                     ),
                 ),

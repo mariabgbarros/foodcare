@@ -13,6 +13,10 @@ class PieChartPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 252, 240, 240),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 240, 66, 61),
+      ),
       body: Center(
         child: Container(
           color: const Color(0xffeceaeb),

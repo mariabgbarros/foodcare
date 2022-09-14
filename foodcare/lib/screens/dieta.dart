@@ -6,6 +6,7 @@ import 'package:foodcare/nav/nav_bar.dart';
 
 class Dieta extends StatelessWidget{
   @override
+  const Dieta({Key? key}) : super(key: key);
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
