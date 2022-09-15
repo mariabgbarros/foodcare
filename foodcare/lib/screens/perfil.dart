@@ -102,7 +102,7 @@ import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:foodcare/network/network.dart';
 
 class PerfilApp extends StatelessWidget {
-  const PerfilApp({
+  /*const PerfilApp({
     Key? key,
     required this.usuario_cadastro,
     required this.delete,
@@ -111,9 +111,9 @@ class PerfilApp extends StatelessWidget {
 
   final VoidCallback delete;
   final VoidCallback update;
-  final UsuarioCadastro usuario_cadastro;
+  final UsuarioCadastro usuario_cadastro; */
   //final int idade = DateTime.now() - usuario_cadastro.anoNasc;
-  //final int imc = usuario_cadastro.peso / (usuario_cadastro.altura * usuario_cadastro.altura);
+  //final int imc = usuario_cadastro.peso / (usuario_cadastro.altura * usuario_cadastro.altura); 
 
   @override
   Widget build(BuildContext context) {
@@ -169,17 +169,18 @@ class PerfilApp extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                      "Peso: ${usuario_cadastro.peso.toString()}" 
+                    "Ligia",
+                      /*"Peso: ${usuario_cadastro.peso.toString()}" 
                        "Idade: ${usuario_cadastro.anoNasc} " 
                        "Idade: ${usuario_cadastro.anoNasc}"
                        "Altura: ${usuario_cadastro.altura.toString()}"
                        "Objetivo: ${usuario_cadastro.objetivos}" ,
-                       //"IMC: ${imc}",
+                       //"IMC: ${imc}", */
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 28.0
                     ),
-                  ),
+                  ), 
                   SizedBox(
                     height: 10.0,
                   ),

@@ -17,12 +17,15 @@ class Login extends StatefulWidget{
 }
 
 class _LoginState extends State<Login> {
+  
+  UsuarioLogin usuarioLogin = new UsuarioLogin(email: "", senha: "senha", id: 1);
+
   final _network = Network();
 
   late TextEditingController _emailController;
   late TextEditingController _senhaController;
 
-  String buttonText = 'Save';
+  String buttonText = 'LOGIN';
   int? id;
 
   @override
@@ -75,7 +78,7 @@ class _LoginState extends State<Login> {
                 Container(
                   padding: EdgeInsets.only(top: 50),
                   child:
-                    TextButton(
+                    ElevatedButton(
                       style: TextButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 255, 98, 39),
                       ),
@@ -87,11 +90,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                        /*Navigator.push(
-                          context,
-                          //MaterialPageRoute(builder: (context) => Home()),
-                                                    MaterialPageRoute(builder: (context) => PerfilApp()),
-                        );*/
+                        _network.metodoGet(usuarioLogin);
                       },
                     ),
                 ),
@@ -104,61 +103,6 @@ class _LoginState extends State<Login> {
     );
 
   }
-  /*void seeAll(BuildContext context) async {
-    await showModalBottomSheet(
-      elevation: 10,
-      backgroundColor: Colors.amber,
-      context: context,
-      builder: (c) {
-        return FutureBuilder<List<UsuarioLogin>?>(
-          future: _network.read,
-          builder: (c, s) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width * 0.8,
-              color: Colors.amber,
-              child: allPersons(s),
-            );
-          },
-        );
-      },
-    );
-  }
-  Widget allPersons(AsyncSnapshot<List<UsuarioLogin>?> s) {
-    if (!s.hasData) {
-      return const Center(
-        child: SizedBox(
-          width: 50,
-          height: 50,
-          child: CircularProgressIndicator(),
-        ),
-      );
-    } else {
-      return ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: s.data!.length,
-        itemBuilder: (c, i) {
-          return PersonCard(
-            person: s.data![i],
-            delete: () {
-              setState(() {});
-            },
-            update: () {
-              setState(
-                () {
-                  buttonText = 'Update';
-                  UsuarioLogin u = s.data![i];
-                  id = u.id;
-                  _emailController.text = u.email;
-                  _senhaController.text = u.senha;
-                },
-              );
-            },
-          );
-        },
-      );
-    }
-  }*/
    Future<void> saveButtonAction() async {
     switch (buttonText) {
       case 'Update':
@@ -170,7 +114,7 @@ class _LoginState extends State<Login> {
     _emailController.clear();
     _senhaController.clear();
     setState(() {
-      buttonText = 'Save';
+      buttonText = 'LOGIN';
     });
   }
   bool get condition {
@@ -203,15 +147,15 @@ class _LoginState extends State<Login> {
       if (c) {
         await _network.write(u);
         await dialog(
-          '${u.email} ${u.senha} logged',
+          'Login efetuado',
         );
       } else {
         await dialog(
-          '${u.email} ${u.senha} already exist',
+          '${u.email} já existe!',
         );
       }
     } else {
-      await dialog('Fields cannot be empty.');
+      await dialog('Por favor, preencha os campos!');
     }
   }
   Future<void> dialog(
