@@ -64,7 +64,7 @@ class Dieta extends StatelessWidget{
             ),
           ],
         )
-      )),bottomNavigationBar: CustomNavBar(paginaAberta:3),           
+      )),bottomNavigationBar: CustomNavBar(paginaAberta:2),           
     );
   }
 }

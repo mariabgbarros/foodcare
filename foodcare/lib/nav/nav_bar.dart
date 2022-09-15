@@ -17,7 +17,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override 
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.black,
+      color: Color.fromARGB(255, 240, 66, 61),
       shape: CircularNotchedRectangle(),
       notchMargin: 10,
       child: Container (
@@ -46,7 +46,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                         Icon(
                           
                           Icons.home,
-                          color: widget.paginaAberta == 0 ? Colors.redAccent: Colors.white
+                          color: widget.paginaAberta == 0 ? Color.fromARGB(255, 85, 23, 23): Colors.white
                         ),
                       ],
                 ),
@@ -67,7 +67,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   children: <Widget>[
                     Icon(
                       Icons.camera_alt_outlined,
-                      color: widget.paginaAberta == 1 ? Colors.redAccent: Colors.white
+                      color: widget.paginaAberta == 1 ? Color.fromARGB(255, 85, 23, 23): Colors.white
                     ),
                   ],
                 ),
@@ -95,7 +95,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     children: <Widget>[
                       Icon(
                         Icons.apple,
-                        color: widget.paginaAberta == 2 ? Colors.redAccent: Colors.white
+                        color: widget.paginaAberta == 2 ? Color.fromARGB(255, 85, 23, 23): Colors.white
                       ),
                     ],
                   ),
@@ -118,7 +118,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     children: <Widget>[
                       Icon(
                         Icons.person,
-                        color: widget.paginaAberta == 3 ? Colors.redAccent: Colors.white
+                        color: widget.paginaAberta == 3 ? Color.fromARGB(255, 85, 23, 23): Colors.white
                       ),
                       
                     ],

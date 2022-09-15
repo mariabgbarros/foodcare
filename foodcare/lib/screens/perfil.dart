@@ -188,7 +188,8 @@ class PerfilApp extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      ),bottomNavigationBar: CustomNavBar(paginaAberta:3),
     );
+
   }
 }
