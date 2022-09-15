@@ -54,12 +54,12 @@ class _NavigationViewState extends State<NavigationView> {
           backgroundColor: const Color.fromARGB(255, 240, 66, 61),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
+            //BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
             BottomNavigationBarItem(icon: Icon(Icons.apple), label: 'Dieta'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
           ],
           currentIndex: paginaAtual,
-          selectedItemColor: Color.fromARGB(255, 101, 21, 19),
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.white,
           onTap: onTapped,
         ));

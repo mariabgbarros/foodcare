@@ -8,7 +8,7 @@ Future<List<UsuarioLogin>?> get read async {
     final url = '${_baseUrl}cr/read';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
-    if (response.statusCode == 200) {
+if (response.statusCode == 200) {
       return _usuariologinsFromJson(response.body);
     }
     return null;
