@@ -3,29 +3,37 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:foodcare/models/usuario_login.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:http/http.dart';
 
 
 class Network {
   //Response response;
 
+  final _baseUrl = 'https://jsonplaceholder.typicode.com/';
+
   void metodoGet (UsuarioLogin usuarioLogin) async {
     Dio dio = new Dio();
-    print(await dio.get("https://jsonplaceholder.typicode.com/users"));
+    print(await dio.get(_baseUrl));
     //print(response.data.toString());
   }
   
-  void metodoPost (UsuarioLogin usuarioLogin) async {
+  void metodoPost (UsuarioLogin usuario_cadastro) async {
     Dio dio = new Dio();
     await dio.post("https://jsonplaceholder.typicode.com/users");
   }
 
   void metodoPut(UsuarioLogin usuarioLogin) async {
-    
+    try {
+     Dio dio = new Dio();
+     await dio.put("https://jsonplaceholder.typicode.com/users"); 
+    } on DioError catch (err) {
+      //print('Erro ao realizar put ${err.response.statusCode}');
+    }
   }
   
   
-  final _baseUrl = 'https://jsonplaceholder.typicode.com/';
+  //final _baseUrl = 'https://jsonplaceholder.typicode.com/';
 Future<List<UsuarioLogin>?> get read async {
     final url = '${_baseUrl}users';
     final uri = Uri.parse(url);
@@ -72,18 +80,7 @@ Future<void> update(
       body: usuariologin.toJson,
     );
   }
-Future<void> delete(
-    UsuarioLogin usuariologin,
-  ) async {
-    final url = '${_baseUrl}ud/delete';
-    final uri = Uri.parse(url);
-    await http.post(
-      uri,
-      body: {
-        "id": usuariologin.id.toString(),
-      },
-    );
-  }
+
 List<UsuarioLogin> _usuariologinsFromJson(String str) {
     return List<UsuarioLogin>.from(
       json.decode(str).map(

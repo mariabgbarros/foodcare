@@ -15,6 +15,8 @@ class Cadastro1 extends StatefulWidget{
 }
 
 class _Cadastro1State extends State<Cadastro1> {
+
+  
   final _network = Network(); 
 
   late TextEditingController _nomeController;
@@ -23,6 +25,18 @@ class _Cadastro1State extends State<Cadastro1> {
 
   String buttonText = 'Save';
   int? id;
+
+  void Proximo() {
+    String nome, email, senha;
+
+    setState(() {
+      nome = _nomeController.text;
+      email = _emailController.text;
+      senha = _senhaController.text;
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2(nome, email, senha)));
+    });
+  }
 
   @override
   void initState() {
@@ -101,10 +115,7 @@ class _Cadastro1State extends State<Cadastro1> {
                         ),
                       ),
                       onPressed: () {
-                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Cadastro2()),
-                        );
+                         Proximo();
                       },
                     ),
                 ),

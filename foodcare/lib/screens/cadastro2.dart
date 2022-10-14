@@ -6,9 +6,10 @@ import 'package:foodcare/network/network.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
 
 class Cadastro2 extends StatefulWidget{
-  const Cadastro2 ({
-    Key? key,
-  }) : super(key:key);
+
+  String nome, email, senha;
+
+  Cadastro2(this.nome, this.email, this.senha);
 
   @override
   State<Cadastro2> createState() => _Cadastro2State();
@@ -53,7 +54,8 @@ class _Cadastro2State extends State<Cadastro2>{
                 Container(
                   padding: EdgeInsets.only(top:50), 
                   child: Text(
-                    "Olá ${usuario_cadastro.nome}! Só mais alguns passos para efetuarmos o seus cadastro.",
+                    "dosso",
+                    //"Olá ${usuario_cadastro.nome}! Só mais alguns passos para efetuarmos o seus cadastro.",
                     style: TextStyle(   
                         fontWeight: FontWeight.bold
                     ),
