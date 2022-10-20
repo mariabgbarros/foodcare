@@ -34,7 +34,10 @@ class _Cadastro1State extends State<Cadastro1> {
       email = _emailController.text;
       senha = _senhaController.text;
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2(nome, email, senha)));
+      Navigator.pushReplacementNamed(
+        context, 
+        "/cadastro2",
+        arguments: {"nome": _nomeController.value.text, "email": _emailController.value.text, "senha": _senhaController.value.text} );
     });
   }
 

@@ -1,59 +1,55 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http hide Response;
 import 'package:foodcare/models/usuario_login.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
-import 'package:http/http.dart';
+
 
 
 class Network {
-  //Response response;
 
-  final _baseUrl = 'https://jsonplaceholder.typicode.com/';
-
-  void metodoGet (UsuarioLogin usuarioLogin) async {
-    Dio dio = new Dio();
-    print(await dio.get(_baseUrl));
-    //print(response.data.toString());
-  }
+  final _baseUrl = 'https://foodcares.herokuapp.com/';
+  final Dio _dio = Dio();
   
-  void metodoPost (UsuarioLogin usuario_cadastro) async {
-    Dio dio = new Dio();
-    await dio.post("https://jsonplaceholder.typicode.com/users");
-  }
-
-  void metodoPut(UsuarioLogin usuarioLogin) async {
+  Future<UsuarioCadastro?> getUsuario({required int id}) async {
+    UsuarioCadastro? user;
     try {
-     Dio dio = new Dio();
-     await dio.put("https://jsonplaceholder.typicode.com/users"); 
-    } on DioError catch (err) {
-      //print('Erro ao realizar put ${err.response.statusCode}');
+      Response userData = await _dio.get(_baseUrl);
+      print('User Info: ${userData.data}');
+
+      UsuarioCadastro user = UsuarioCadastro.fromJson(userData.data);
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print('Dio error!');
+        print('STATUS: ${e.response?.statusCode}');
+        print('DATA: ${e.response?.data}');
+        print('HEADERS: ${e.response?.headers}');
+      } else {
+        print('error sending request');
+        print(e.message);
+      }
     }
+    return user;
   }
-  
-  
-  //final _baseUrl = 'https://jsonplaceholder.typicode.com/';
-Future<List<UsuarioLogin>?> get read async {
-    final url = '${_baseUrl}users';
-    final uri = Uri.parse(url);
-    final response = await http.get(uri);
-if (response.statusCode == 200) {
-      return _usuariologinsFromJson(response.body[0]);
-      print(response.body[0]);
-    }
-    return null;
-  }
-Future<void> write(
-    UsuarioLogin usuariologin,
-  ) async {
-    final url = '${_baseUrl}cr/write';
-    final uri = Uri.parse(url);
-    await http.post(
-      uri,
-      body: usuariologin.toJson,
+
+Future<UsuarioCadastro?> criaUser({required UsuarioCadastro usuarioCadastro}) async {
+  UsuarioCadastro? retrievedUser;
+
+  try {
+    Response response = await _dio.post(
+      _baseUrl + '/usuario',
+      data: usuarioCadastro.toJson,
     );
+    print('User created: ${response.data}');
+
+    retrievedUser = UsuarioCadastro.fromJson(response.data);
+  } catch (e) {
+      print('Error creating user: $e');
   }
+  return retrievedUser;
+}
+
 
 
 Future<bool> check(UsuarioLogin usuariologin) async {

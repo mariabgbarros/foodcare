@@ -4,12 +4,12 @@ import 'package:foodcare/screens/login.dart';
 import 'package:foodcare/screens/inicio.dart';
 import 'package:foodcare/network/network.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
+import 'package:flutter/src/widgets/routes.dart';
+
 
 class Cadastro2 extends StatefulWidget{
 
-  String nome, email, senha;
-
-  Cadastro2(this.nome, this.email, this.senha);
+  Cadastro2();
 
   @override
   State<Cadastro2> createState() => _Cadastro2State();
@@ -38,6 +38,10 @@ class _Cadastro2State extends State<Cadastro2>{
   }
   @override
   Widget build(BuildContext context) {
+
+    //Map data = ModalRoute.of(context).settings.arguments;
+     String nome = " ";//data["nome"];
+
     var usuario_cadastro;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
@@ -54,8 +58,7 @@ class _Cadastro2State extends State<Cadastro2>{
                 Container(
                   padding: EdgeInsets.only(top:50), 
                   child: Text(
-                    "dosso",
-                    //"Olá ${usuario_cadastro.nome}! Só mais alguns passos para efetuarmos o seus cadastro.",
+                    "Olá, $nome! Só mais alguns passos para efetuarmos o seus cadastro.",
                     style: TextStyle(   
                         fontWeight: FontWeight.bold
                     ),

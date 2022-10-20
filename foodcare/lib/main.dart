@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:foodcare/screens/cadastro.dart';
+import 'package:foodcare/screens/cadastro2.dart';
 import 'package:foodcare/screens/inicio.dart';
+import 'package:foodcare/screens/login.dart';
+import 'package:foodcare/screens/home.dart';
+import 'package:foodcare/screens/perfil.dart';
+import 'package:foodcare/screens/telagrafico2.dart';
+import 'package:foodcare/screens/dieta.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp(
+
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +23,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: new Inicio(),
+      routes: {
+        "/cadastro": (context) => Cadastro1(),
+        "/cadastro2": (context) => Cadastro2(),
+        "/login": (context) => Login(),
+        "/home": (context) => Home(),
+        "/grafico": (context) => PieChartPage2(),
+        "/perfil": (context) => PerfilApp(),
+        "/dieta": (context) => Dieta()
+      }
     );
   }
 }
