@@ -2,11 +2,11 @@ class UsuarioCadastro {
   final String nome;
   final String email;
   final String senha;
-  final int anoNasc;
+  final DateTime anoNasc;
   final int peso;
   final int altura;
   final String alergias;
-  final String objetivos;
+  final int objetivos;
   final int? id;
 
 UsuarioCadastro({

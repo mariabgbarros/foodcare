@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         "/home": (context) => Home(),
         "/grafico": (context) => PieChartPage2(),
         "/perfil": (context) => PerfilApp(),
-        "/dieta": (context) => Dieta()
       }
     );
   }

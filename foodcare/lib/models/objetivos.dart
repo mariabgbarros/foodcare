@@ -1,24 +1,20 @@
-class UsuarioLogin {
-  final String email;
-  final String senha;
+class Objetivo {
+  final String objetivo;
   final int? id;
 
-UsuarioLogin({
-    required this.email,
-    required this.senha,
+Objetivo({
+    required this.objetivo,
     required this.id,
   });
 
-factory UsuarioLogin.fromJson(Map<String, dynamic> json) {
-    return UsuarioLogin(
+factory Objetivo.fromJson(Map<String, dynamic> json) {
+    return Objetivo(
       id: json["id"],
-      email: json["email"],
-      senha: json["senha"],
+      objetivo: json["objetivo"],
     );
   }
 Map<String, dynamic> get toJson => {
         "id": id.toString(),
-        "email": email,
-        "senha": senha,
+        "objetivo": objetivo,
       };
 }

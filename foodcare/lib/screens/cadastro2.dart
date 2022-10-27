@@ -9,17 +9,33 @@ import 'package:flutter/src/widgets/routes.dart';
 
 class Cadastro2 extends StatefulWidget{
 
+
   Cadastro2();
 
   @override
   State<Cadastro2> createState() => _Cadastro2State();
 }
 
+class DropDown extends StatefulWidget {
+  @override
+  _DropDownState createState() => _DropDownState();
+}
+
+class _DropDownState extends State <DropDown> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+       body: criaDropDownButton(),
+   );
+  }
+   criaDropDownButton() {
+   }
+}
 class _Cadastro2State extends State<Cadastro2>{
 
   final _network = Network(); 
 
-  late TextEditingController _idadeController;
+  late TextEditingController _anoController;
   late TextEditingController _pesoController;
   late TextEditingController _alturaController;
 
@@ -28,21 +44,23 @@ class _Cadastro2State extends State<Cadastro2>{
 
   @override
   void initState() {
-    _idadeController  = TextEditingController();
+    _anoController  = TextEditingController();
     _pesoController = TextEditingController();
     _alturaController = TextEditingController();
     super.initState();
   }
-  void AlertCadastro() {
-
-  }
+  
   @override
   Widget build(BuildContext context) {
 
-    //Map data = ModalRoute.of(context).settings.arguments;
-     String nome = " ";//data["nome"];
+     Map data = {};
+     data = ModalRoute.of(context)!.settings.arguments as Map;
+     String nome = data["nome"];
+     String email = data["email"];
+     String senha = data["senha"];
+     int objetivo = 0;
 
-    var usuario_cadastro;
+    UsuarioCadastro usuario_cadastro;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
@@ -67,11 +85,11 @@ class _Cadastro2State extends State<Cadastro2>{
                 Container( //idade
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
-                    controller: _idadeController,
+                    controller: _anoController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Idade: ",
+                        hintText: "Data de Nascimento: ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
@@ -93,6 +111,7 @@ class _Cadastro2State extends State<Cadastro2>{
                 Container( //altura
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
+                    controller: _alturaController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -102,10 +121,10 @@ class _Cadastro2State extends State<Cadastro2>{
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container( // objetivos
+                Container( // objetivos ##############################################################################
                   padding: EdgeInsets.only(top:80), 
                   child: DropdownButton(
-                      value: 'Perder peso',
+                      value: 'Perder massa',
                       icon: const Icon(
                         Icons.arrow_downward,
                         color:  Color.fromARGB(255, 240, 66, 61)
@@ -120,13 +139,14 @@ class _Cadastro2State extends State<Cadastro2>{
                       onChanged: (String? newValue) {
                           
                       },
-                      items: <String>['Perder peso', 'Ganhar peso', 'Manter peso']
+                      items: <String>['Perder massa', 'Manter massa', 'Ganhar massa']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
+                     
                     ),
                 ),
                 
@@ -171,20 +191,17 @@ class _Cadastro2State extends State<Cadastro2>{
                           fontSize: 18,
                         ),
                       ),
-                      onPressed: () => showDialog<String>(
-                        context: context, 
-                        builder: (BuildContext context) => AlertDialog(
-                          content: const Text('Seu cadastro foi efetuado!'),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'OK'),
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          "/login",
+                        );
+
+                        DateTime dataNasc = new DateFormat("yyyy-MM-dd").parse(_anoController);
+                        usuario_cadastro = new UsuarioCadastro(nome: nome, email: email, senha: senha, anoNasc: dataNasc, peso: int.parse(_pesoController.text), altura: int.parse(_alturaController.text), alergias: , objetivos: , id: )
+                      }
                     ),
                   ),
-                ),
               ],
             ),
           )

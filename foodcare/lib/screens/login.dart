@@ -90,7 +90,11 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                       // _network.getUsuario(id: );
+                       //_network.getUsuario(id: );
+                       Navigator.pushReplacementNamed(
+                         context,
+                         "/grafico"
+                       );
                       },
                     ),
                 ),

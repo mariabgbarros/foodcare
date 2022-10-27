@@ -34,9 +34,9 @@ class Inicio extends StatelessWidget{
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacementNamed(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      "/login",
                     );
                   },
                 ),
@@ -54,9 +54,9 @@ class Inicio extends StatelessWidget{
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacementNamed(
                       context,
-                      MaterialPageRoute(builder: (context) => Cadastro1()),
+                      "/cadastro",
                     );
               },
             ),
