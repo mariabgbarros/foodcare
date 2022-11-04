@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:foodcare/screens/cadastro.dart';
 import 'package:foodcare/screens/cadastro2.dart';
 import 'package:foodcare/screens/inicio.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         "/login": (context) => Login(),
         "/home": (context) => Home(),
         "/grafico": (context) => PieChartPage2(),
-        "/perfil": (context) => PerfilApp(),
+        //"/perfil": (context) => PerfilApp(),
       }
     );
   }

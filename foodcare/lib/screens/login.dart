@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
                        //_network.getUsuario(id: );
                        Navigator.pushReplacementNamed(
                          context,
-                         "/grafico"
+                         "/home"
                        );
                       },
                     ),

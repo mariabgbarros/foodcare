@@ -17,51 +17,7 @@ class Dieta extends StatelessWidget{
         child: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              alignment: Alignment.topCenter,
-              child:  Image.asset('assets/images/logoinicio.png'),
-            ),
-            Container( 
-              padding: EdgeInsets.all(20.0),
-              child:
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 98, 39),
-                  ),
-                  child: Text(
-                    'ENTRAR',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Login()),
-                    );
-                  },
-                ),
-            ),
             
-            TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 98, 39),
-              ),
-              child: Text(
-                'FAZER CADASTRO',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Cadastro1()),
-                    );
-              },
-            ),
           ],
         )
       )),bottomNavigationBar: CustomNavBar(paginaAberta:3),           

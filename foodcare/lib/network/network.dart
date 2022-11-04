@@ -9,7 +9,7 @@ import 'package:foodcare/models/usuario_cadastro.dart';
 
 class Network {
 
-  final _baseUrl = 'https://foodcares.herokuapp.com/';
+  final _baseUrl = 'https://foodcares.herokuapp.com';
   final Dio _dio = Dio();
   
   Future<UsuarioCadastro?> getUsuario({required int id}) async {
@@ -38,7 +38,7 @@ Future<UsuarioCadastro?> criaUser({required UsuarioCadastro usuarioCadastro}) as
 
   try {
     Response response = await _dio.post(
-      _baseUrl + '/usuario',
+      _baseUrl + '/usuarios',
       data: usuarioCadastro.toJson,
     );
     print('User created: ${response.data}');

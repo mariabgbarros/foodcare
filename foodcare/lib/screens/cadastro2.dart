@@ -49,7 +49,13 @@ class _Cadastro2State extends State<Cadastro2>{
     _alturaController = TextEditingController();
     super.initState();
   }
-  
+  void usuario() {
+    UsuarioCadastro user;
+    
+    setState(() {
+      
+    });  
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -76,7 +82,7 @@ class _Cadastro2State extends State<Cadastro2>{
                 Container(
                   padding: EdgeInsets.only(top:50), 
                   child: Text(
-                    "Olá, $nome! Só mais alguns passos para efetuarmos o seus cadastro.",
+                    "Olá, $nome! Só mais alguns passos para efetuarmos o seu cadastro.",
                     style: TextStyle(   
                         fontWeight: FontWeight.bold
                     ),
@@ -86,10 +92,10 @@ class _Cadastro2State extends State<Cadastro2>{
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
                     controller: _anoController,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Data de Nascimento: ",
+                        hintText: "Data de Nascimento: (YYYY-MM-DD) ",
                         hintStyle: TextStyle(color: Colors.black),
                     ),
                     textAlign: TextAlign.center,
@@ -141,6 +147,13 @@ class _Cadastro2State extends State<Cadastro2>{
                       },
                       items: <String>['Perder massa', 'Manter massa', 'Ganhar massa']
                           .map<DropdownMenuItem<String>>((String value) {
+                            switch (value)  {
+                              case 'Perder massa': objetivo = 1; break;
+                              case 'Manter massa': objetivo = 1; break;
+                              case 'Ganhar massa': objetivo = 1; break;
+                              default: objetivo = 2;
+                                    
+                            }
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -150,33 +163,6 @@ class _Cadastro2State extends State<Cadastro2>{
                     ),
                 ),
                 
-                Container( //alergia
-                    padding: EdgeInsets.only(top:80),
-                    child: DropdownButton(
-                      value: 'Sim',
-                       icon: const Icon(
-                        Icons.arrow_downward,
-                        color:  Color.fromARGB(255, 240, 66, 61)
-                      ),
-                      elevation: 16,
-                      style: const TextStyle(
-                      color:  Color.fromARGB(255, 240, 66, 61),
-                      ),
-                      underline: Container(
-                        height: 2,
-                      ),
-                      onChanged: (String? newValue) {
-                          
-                      },
-                      items: <String>['Sim', 'Não']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                ),
                 Container(
                   padding: EdgeInsets.only(top: 50),
                   child:
@@ -196,9 +182,8 @@ class _Cadastro2State extends State<Cadastro2>{
                           context,
                           "/login",
                         );
-
-                        DateTime dataNasc = new DateFormat("yyyy-MM-dd").parse(_anoController);
-                        usuario_cadastro = new UsuarioCadastro(nome: nome, email: email, senha: senha, anoNasc: dataNasc, peso: int.parse(_pesoController.text), altura: int.parse(_alturaController.text), alergias: , objetivos: , id: )
+                        usuario_cadastro = new UsuarioCadastro(nome: nome, email: email, senha: senha, data_nasc: _anoController.text, peso: int.parse(_pesoController.text), altura: int.parse(_alturaController.text), objetivos: objetivo);
+                        _network.criaUser(usuarioCadastro: usuario_cadastro);
                       }
                     ),
                   ),
