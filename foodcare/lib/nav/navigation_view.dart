@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:foodcare/models/usuario_login.dart';
 import 'package:foodcare/screens/home.dart';
 import 'package:foodcare/screens/dieta.dart';
+import 'package:foodcare/screens/perfil.dart';
 import 'package:foodcare/screens/telagrafico2.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,18 +45,19 @@ class _NavigationViewState extends State<NavigationView> {
           physics: const NeverScrollableScrollPhysics(),
           onPageChanged: onTapped,
           controller: pageController,
-          children: [
-            //(map != null) ? Home(usuarioLogin: map) : Home(usuarioLogin: null),
+          children: [ // telas
+            //const Home,
+            //(map != null) ? Home(usuario_login: map) : Home(usuarioLogin: null),
             const PieChartPage2(), //home
             const Dieta(),
-            //(map != null) ? PerfilView(paciente: map) : RankingUbsView(),
+            //(map != null) ? PerfilApp(usuario_cadastro: map) : PerfilApp(usuario_cadastro: null),
             ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromARGB(255, 240, 66, 61),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            //BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
+            BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
             BottomNavigationBarItem(icon: Icon(Icons.apple), label: 'Dieta'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
           ],

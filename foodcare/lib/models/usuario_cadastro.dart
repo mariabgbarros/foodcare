@@ -24,18 +24,19 @@ factory UsuarioCadastro.fromJson(Map<String, dynamic> json) {
       nome: json["nome"],
       email: json["email"],
       senha: json["senha"],
-      data_nasc: json["anoNasc"],
+      data_nasc: json["data_nasc"],
       peso: json["peso"],
       altura: json["altura"],
-      objetivos: json["objetivos"],
+      objetivos: json["objetivo_id"],
     );
   }
 Map<String, dynamic> get toJson => {
+        "nome": nome,
         "email": email,
         "senha": senha,
-        "data_nasc": data_nasc.toString(),
-        "peso": peso.toString(),
-        "altura": altura.toString(),
-        "objetivos": objetivos,
+        "data_nasc": data_nasc,
+        "peso": peso,
+        "altura": altura,
+        "objetivo_id": objetivos,
       };
 }
