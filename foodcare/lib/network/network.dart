@@ -10,16 +10,19 @@ import 'package:foodcare/models/usuario_cadastro.dart';
 class Network {
 
   final _baseUrl = 'https://foodcares.herokuapp.com';
-  // final _baseUrl = 'http://localhost:3333';
   final Dio _dio = Dio();
-  
-  Future<UsuarioCadastro?> getUsuario({required int id}) async {
-    UsuarioCadastro? user;
+
+  Future<UsuarioCadastro?> getUsuario({required UsuarioCadastro usuario}) async {
+    UsuarioCadastro? usuarioConsultado;
     try {
-      Response userData = await _dio.get(_baseUrl);
+      Response userData = await _dio.get(_baseUrl + '/usuarios/' + usuario.email);
       print('User Info: ${userData.data}');
 
-      UsuarioCadastro user = UsuarioCadastro.fromJson(userData.data);
+      if (userData.data == null)
+        return null;
+      
+      usuarioConsultado = UsuarioCadastro.fromJson(userData.data);
+
     } on DioError catch (e) {
       if (e.response != null) {
         print('Dio error!');
@@ -31,7 +34,8 @@ class Network {
         print(e.message);
       }
     }
-    return user;
+    print(usuarioConsultado);
+    return usuarioConsultado;
   }
 
 Future<UsuarioCadastro?> criaUser({required UsuarioCadastro usuarioCadastro}) async {

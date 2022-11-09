@@ -8,6 +8,8 @@ import 'package:foodcare/screens/home.dart';
 import 'package:foodcare/screens/perfil.dart';
 import 'package:foodcare/screens/telagrafico2.dart';
 import 'package:foodcare/screens/dieta.dart';
+import 'package:foodcare/widgets/bar_chart_sample.dart';
+import 'package:foodcare/widgets/pie_chart_sample.dart';
 
 void main() {
   runApp(const MyApp(
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         "/cadastro": (context) => Cadastro1(),
         "/cadastro2": (context) => Cadastro2(),
         "/login": (context) => Login(),
-        "/home": (context) => Home(),
+        "/home": (context) => BarChartSample(),
         "/grafico": (context) => PieChartPage2(),
         //"/perfil": (context) => PerfilApp(),
       }

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 
 class _BarChart extends StatelessWidget {
   const _BarChart({Key? key}) : super(key: key);
@@ -7,6 +8,13 @@ class _BarChart extends StatelessWidget {
   @override
   Widget build(BuildContext context)
    {
+     Map data = {};
+
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
+    UsuarioCadastro user = data["usuario"];
+    print(user);
+
     return BarChart(
       BarChartData(
         barTouchData: barTouchData,

@@ -1,3 +1,4 @@
+import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:foodcare/nav/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -16,6 +17,12 @@ class Home extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    Map data = {};
+
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
+    UsuarioCadastro user = data["uc"];
+    
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
@@ -26,7 +33,7 @@ class Home extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[ 
             //color: const Color(0xffeceaeb),
-            /*child: */Padding(
+            Padding(
               padding: const EdgeInsets.all(28.0),
               child: ListView(
                 children: const <Widget>[

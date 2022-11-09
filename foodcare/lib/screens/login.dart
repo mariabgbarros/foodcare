@@ -18,8 +18,8 @@ class Login extends StatefulWidget{
 
 class _LoginState extends State<Login> {
   
-  UsuarioLogin usuarioLogin = new UsuarioLogin(email: "", senha: "senha", id: 1);
-  //UsuarioCadastro user = new UsuarioCadastro(nome: "", email: "", senha: senha, anoNasc: anoNasc, peso: peso, altura: altura, alergias: alergias, objetivos: objetivos, id: id) ;
+  // UsuarioLogin usuarioLogin = new UsuarioLogin(email: "", senha: "senha", id: 1);
+  UsuarioCadastro user = new UsuarioCadastro(nome: "", email: "", senha: "", data_nasc: "", peso: 0, altura: 0, objetivos: 2) ;
   final _network = Network();
 
   late TextEditingController _emailController;
@@ -33,6 +33,26 @@ class _LoginState extends State<Login> {
     _emailController = TextEditingController();
     _senhaController = TextEditingController();
     super.initState();
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text('Senha ou email incorretos!'),
+          content: new Text('Por favor, digite novamente.'),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Fechar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ); 
+      }
+    );
   }
 
   Widget build(BuildContext context) {
@@ -90,11 +110,23 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                       //_network.getUsuario(id: );
-                       Navigator.pushReplacementNamed(
-                         context,
-                         "/home"
-                       );
+                        UsuarioCadastro user = new UsuarioCadastro(nome: "", email: _emailController.text, senha: _senhaController.text, data_nasc: "", peso: 0, altura: 0, objetivos: 2) ;
+
+                        UsuarioCadastro? usuarioConsultado;
+                        _network.getUsuario(usuario: user).then( (resultado) {
+                          if (resultado == null) {
+                            _showDialog();
+                          } else if (resultado.senha != _senhaController.text) {
+                              _showDialog();
+                            }
+                          else {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              "/home",
+                              arguments: {"usuario": resultado}
+                            );
+                          }
+                        });
                       },
                     ),
                 ),
