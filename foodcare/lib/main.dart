@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
         "/cadastro": (context) => Cadastro1(),
         "/cadastro2": (context) => Cadastro2(),
         "/login": (context) => Login(),
-        "/home": (context) => BarChartSample(),
+        "/home": (context) => PieChartPage2(),
         "/grafico": (context) => PieChartPage2(),
-        //"/perfil": (context) => PerfilApp(),
+        "/perfil": (context) => PerfilApp(),
       }
     );
   }

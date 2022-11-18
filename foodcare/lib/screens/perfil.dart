@@ -10,17 +10,25 @@ import 'package:foodcare/screens/cadastro.dart';
 import 'package:foodcare/screens/login.dart';
 
 class PerfilApp extends StatelessWidget {
-   PerfilApp({
-    Key? key,
-    required this.usuario_cadastro,
-  }) : super(key: key);
-
-  final UsuarioCadastro usuario_cadastro; 
-  //final int idade = DateTime.now() - usuario_cadastro.data_nasc;
+   PerfilApp({Key? key,}) : super(key: key);
+  
   //final double imc = usuario_cadastro.peso / (usuario_cadastro.altura * usuario_cadastro.altura); 
-
   @override
   Widget build(BuildContext context) {
+    Map data = {};
+
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+    UsuarioCadastro usuario_cadastro = data["usuario"];
+    DateTime atual = DateTime.now();
+    DateTime nasc = DateTime.parse(usuario_cadastro.data_nasc);
+    int idade = atual.year  -  nasc.year;
+    if (atual.month < nasc.month) {
+      idade--;
+    } else if (atual.month == nasc.month) {
+      if(atual.day < nasc.day) {
+        idade--;
+      }
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -34,19 +42,26 @@ class PerfilApp extends StatelessWidget {
             ),
             child: Container(
               width: double.infinity,
-              height: 350.0,
+              height: 300.0,
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      height: 100,
+                      alignment: Alignment.topCenter,
+                      child:  Image.asset('assets/images/perfil.jpg'),
+                    ),
                     SizedBox(
                       height: 10.0,
                     ),
                     Text(
                       "${usuario_cadastro.nome}",
                       style: TextStyle(
-                        fontSize: 22.0,
+                        
+                        fontSize: 40.0,
                         color: Colors.white,
                       ),
                     ),
@@ -63,27 +78,42 @@ class PerfilApp extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                
                 children: <Widget>[
-                  Text(
-                      "Peso: ${usuario_cadastro.peso.toString()}" 
-                       "Idade: ${usuario_cadastro.data_nasc} " 
-                       "Altura: ${usuario_cadastro.altura.toString()}"
-                       "Objetivo: ${usuario_cadastro.objetivos}" ,
-                       //"IMC: ${imc}", 
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28.0
+                  Card(
+                    child:SizedBox(
+                      width: 400,
+                      height: 50,
+                      child: Center(child: Text("Peso: ${usuario_cadastro.peso.toString()}kg"))
                     ),
                   ), 
-                  SizedBox(
-                    height: 10.0,
+                  Card(
+                    child:SizedBox(
+                      width: 400,
+                      height: 50,
+                      child: Center(child:Text("Idade: ${idade} anos"))
+                    ),
                   ),
-                ],
+                  Card(
+                    child:SizedBox(
+                      width: 400,
+                      height: 50,
+                      child: Center(child:Text("Altura: ${usuario_cadastro.altura.toString()}cm"))
+                    ),
+                  ),
+                  Card(
+                    child:SizedBox(
+                      width: 400,
+                      height: 50,
+                      child: Center(child: Text("Objetivo: ${usuario_cadastro.objetivos}"))
+                    ),
+                  ),  //"IMC: ${imc}",  
+                ]
+              )
               ),
             ),
-          ),
         ],
       ),
     );

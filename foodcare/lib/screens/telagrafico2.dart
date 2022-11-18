@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '/widgets/pie_chart_sample.dart';
 import '/widgets/bar_chart_sample.dart';
 import 'package:foodcare/nav/nav_bar.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 
 class PieChartPage2 extends StatelessWidget {
   final Color barColor = Colors.white;
@@ -12,6 +13,12 @@ class PieChartPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map data = {};
+
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
+    UsuarioCadastro user = data["usuario"];
+    print(user);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
@@ -19,26 +26,36 @@ class PieChartPage2 extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          color: const Color(0xffeceaeb),
-          child: Padding(
-            padding: const EdgeInsets.all(28.0),
-            child: ListView(
-              children: const <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8.0),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [ Color.fromARGB(255, 240, 66, 61), Color.fromARGB(255, 240, 66, 61)]
+              )
+            ),
+          child: Container(
+            width: double.infinity, 
+            height: 100,
+            child: Padding(
+              padding: const EdgeInsets.all(28.0),
+              child: ListView(
+                children: const <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                PieChartSample1(),
-                SizedBox(
-                  height: 8,
-                ),
-                BarChartSample(),
-              ],
+                  SizedBox(
+                    height: 8,
+                  ),
+                  PieChartSample1(),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  BarChartSample(),
+                ],
+              ),
             ),
           ),
         )

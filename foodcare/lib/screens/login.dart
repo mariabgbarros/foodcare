@@ -19,7 +19,7 @@ class Login extends StatefulWidget{
 class _LoginState extends State<Login> {
   
   // UsuarioLogin usuarioLogin = new UsuarioLogin(email: "", senha: "senha", id: 1);
-  UsuarioCadastro user = new UsuarioCadastro(nome: "", email: "", senha: "", data_nasc: "", peso: 0, altura: 0, objetivos: 2) ;
+  UsuarioCadastro user = new UsuarioCadastro(nome: "", email: "", senha: "", data_nasc: "", peso: 0, altura: 0, sexo: "", objetivos: 2) ;
   final _network = Network();
 
   late TextEditingController _emailController;
@@ -68,6 +68,7 @@ class _LoginState extends State<Login> {
             //key: _formKey,
             child: Column(
               children: <Widget> [
+                
                 Container(
                   padding: EdgeInsets.only(top:80),
                   child: TextFormField(
@@ -110,7 +111,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                        UsuarioCadastro user = new UsuarioCadastro(nome: "", email: _emailController.text, senha: _senhaController.text, data_nasc: "", peso: 0, altura: 0, objetivos: 2) ;
+                        UsuarioCadastro user = new UsuarioCadastro(nome: "", email: _emailController.text, senha: _senhaController.text, data_nasc: "", peso: 0, altura: 0, sexo: " ", objetivos: 2) ;
 
                         UsuarioCadastro? usuarioConsultado;
                         _network.getUsuario(usuario: user).then( (resultado) {
@@ -122,7 +123,7 @@ class _LoginState extends State<Login> {
                           else {
                             Navigator.pushReplacementNamed(
                               context,
-                              "/home",
+                              "/perfil",
                               arguments: {"usuario": resultado}
                             );
                           }

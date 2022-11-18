@@ -5,6 +5,7 @@ class UsuarioCadastro {
   final String data_nasc;
   final int peso;
   final int altura;
+  final String sexo;
   final int objetivos;
 
 
@@ -15,6 +16,7 @@ UsuarioCadastro({
     required this.data_nasc,
     required this.peso,
     required this.altura,
+    required this.sexo,
     required this.objetivos,
 
   });
@@ -27,6 +29,7 @@ factory UsuarioCadastro.fromJson(Map<String, dynamic> json) {
       data_nasc: json["data_nasc"],
       peso: json["peso"],
       altura: json["altura"],
+      sexo: json["sexo"],
       objetivos: json["objetivo_id"],
     );
   }
@@ -37,6 +40,7 @@ Map<String, dynamic> get toJson => {
         "data_nasc": data_nasc,
         "peso": peso,
         "altura": altura,
+        "sexo": sexo,
         "objetivo_id": objetivos,
       };
 }

@@ -21,7 +21,7 @@ class Home extends StatelessWidget{
 
     data = ModalRoute.of(context)!.settings.arguments as Map;
 
-    UsuarioCadastro user = data["uc"];
+    UsuarioCadastro user = data["usuario"];
     
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),

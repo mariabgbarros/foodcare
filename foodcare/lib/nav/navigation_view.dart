@@ -46,11 +46,9 @@ class _NavigationViewState extends State<NavigationView> {
           onPageChanged: onTapped,
           controller: pageController,
           children: [ // telas
-            //const Home,
-            //(map != null) ? Home(usuario_login: map) : Home(usuarioLogin: null),
             const PieChartPage2(), //home
             const Dieta(),
-            //(map != null) ? PerfilApp(usuario_cadastro: map) : PerfilApp(usuario_cadastro: null),
+            PerfilApp(),
             ],
         ),
         bottomNavigationBar: BottomNavigationBar(
