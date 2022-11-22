@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http hide Response;
 import 'package:foodcare/models/usuario_login.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
-
-
+import 'package:foodcare/models/alimento.dart';
+import 'package:foodcare/models/refeicoes.dart';
 
 class Network {
 
@@ -36,6 +36,31 @@ class Network {
     }
     print(usuarioConsultado);
     return usuarioConsultado;
+  }
+  Future<Refeicoes?> getRefeicao({required Alimento refeicao}) async {
+    Refeicoes? refeicaoConsultada;
+    try {
+      Response refeicaoData = await _dio.get(_baseUrl + '/usuarios/' + '' + 'refeicoes' );
+      print('User Info: ${refeicaoData.data}');
+
+      if (refeicaoData.data == null)
+        return null;
+      
+      refeicaoConsultada = Refeicoes.fromJson(refeicaoData.data);
+
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print('Dio error!');
+        print('STATUS: ${e.response?.statusCode}');
+        print('DATA: ${e.response?.data}');
+        print('HEADERS: ${e.response?.headers}');
+      } else {
+        print('error sending request');
+        print(e.message);
+      }
+    }
+    print(refeicaoConsultada);
+    return refeicaoConsultada;
   }
 
 Future<UsuarioCadastro?> criaUser({required UsuarioCadastro usuarioCadastro}) async {

@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  counter_button: ^1.0.1
   requests: ^4.5.0
   json_annotation: ^4.6.0
   flutter_modular: any

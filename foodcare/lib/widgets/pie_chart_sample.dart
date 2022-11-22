@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'indicators_widget.dart';
+import 'package:foodcare/models/usuario_cadastro.dart';
 
 
 class PieChartSample1 extends StatefulWidget {
@@ -22,7 +23,7 @@ class PieChartSample1State extends State {
         child: Column(
           children: <Widget>[
             const SizedBox(
-              height: 28,
+              height: 10,
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
@@ -52,7 +53,7 @@ class PieChartSample1State extends State {
               ],
             ),
             const SizedBox(
-              height: 18,
+              height: 10,
             ),
             Expanded(
               child: AspectRatio(
@@ -103,7 +104,7 @@ class PieChartSample1State extends State {
           case 0:
             return PieChartSectionData(
               color: color0.withOpacity(opacity),
-              value: 25,
+              value: 60,
               title: '',
               radius: 80,
               titleStyle: const TextStyle(

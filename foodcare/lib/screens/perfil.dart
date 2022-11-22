@@ -48,6 +48,7 @@ class PerfilApp extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Text("Perfil"),
                     Container(
                       width: double.infinity,
                       height: 100,

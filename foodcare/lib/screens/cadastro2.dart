@@ -33,10 +33,13 @@ class _DropDownState extends State <DropDown> {
    }
 }
 enum Sexo { fem, masc }
+var valueObj = ValueNotifier('');
 
+const List<String> obj = <String>['Manter massa', 'Perder massa', 'Ganhar massa'];
 class _Cadastro2State extends State<Cadastro2>{
   
   Sexo? _sexo = Sexo.fem;
+  String dropdownValue = obj.first;
   final _network = Network(); 
 
   late TextEditingController _anoController;
@@ -92,7 +95,7 @@ class _Cadastro2State extends State<Cadastro2>{
      String email = data["email"];
      String senha = data["senha"];
      int objetivo = 0;
-    String sexo = " ";
+    String sexo = "Feminino";
     UsuarioCadastro usuario_cadastro;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
@@ -155,7 +158,7 @@ class _Cadastro2State extends State<Cadastro2>{
                   ),
                 ),
                 Container( //sexo
-                  padding: EdgeInsets.only(top:80),
+                  padding: EdgeInsets.only(top:150),
                   child: Column(
                     children: <Widget>[
                       Text("Qual o seu sexo?", ),
@@ -195,54 +198,56 @@ class _Cadastro2State extends State<Cadastro2>{
                     ],
                   ),
                 ),
-                Container( // objetivos ##############################################################################
-                  padding: EdgeInsets.only(top:80), 
-                  child: InputDecorator(
-                    decoration: InputDecoration(
-                      labelText: 'Qual seu objetivo? ',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)
-                      ),
-                      contentPadding: EdgeInsets.all(10),
+               
+                SizedBox(
+                      height: 10.0,
                     ),
-                    child: DropdownButton<String>(
-                        isExpanded: true,
-                        //alue: value,
-                        icon: const Icon(
-                          Icons.arrow_downward,
-                          color:  Color.fromARGB(255, 240, 66, 61)
-                        ),
-                        elevation: 16,
-                        style: const TextStyle(
-                        color:  Color.fromARGB(255, 240, 66, 61),
-                        ),
-                        underline: Container(
-                          height: 2,
-                        ),
-                        onChanged: (String? newValue) {
-                            setState(() {
-                              //value = newValue!;
-                            });
-                        },
-                        items: <String>['Perder massa', 'Manter massa', 'Ganhar massa']
-                            .map((String value) {
-                              switch (value)  {
-                                case 'Perder massa': objetivo = 1; break;
-                                case 'Manter massa': objetivo = 2; break;
-                                case 'Ganhar massa': objetivo = 3; break;
-                                default: objetivo = 2;       
-                              }
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      
-                      ),
-                  ),
-                ),
-                
-                Container(
+                ValueListenableBuilder(
+                      valueListenable:
+                          valueObj,
+                      builder: (BuildContext context, String value, _) {
+                        return Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            child: DropdownButtonFormField<String>(
+                                isExpanded: true,
+                                decoration: InputDecoration(
+                                  label: const Text(
+                                    'Qual o seu objetivo?',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 240, 66, 61),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                        
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color.fromARGB(255, 240, 66, 61),
+                                        width: 2,
+                                      )),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color.fromARGB(255, 240, 66, 61),
+                                        width: 2,
+                                      )),
+                                ),
+                                value: (value.isEmpty) ? null : value,
+                                items: obj
+                                    .map((op) => DropdownMenuItem(
+                                          value: op,
+                                          child: Text(op),
+                                        ))
+                                    .toList(),
+                                onChanged: (escolha) {
+                                  valueObj
+                                      .value = escolha.toString();
+                                }));
+                      }), 
+                      Container(
                   padding: EdgeInsets.only(top: 50),
                   child:
                     TextButton(
@@ -263,10 +268,11 @@ class _Cadastro2State extends State<Cadastro2>{
                         );
                         usuario_cadastro = new UsuarioCadastro(nome: nome, email: email, senha: senha, data_nasc: _anoController.text, peso: int.parse(_pesoController.text), altura: int.parse(_alturaController.text),sexo: sexo, objetivos: objetivo);
                         _network.criaUser(usuarioCadastro: usuario_cadastro);
+                        
                         _showDialog();
                       }
                     ),
-                  ),
+                  ), 
               ],
             ),
           )

@@ -7,6 +7,7 @@ import 'package:foodcare/screens/login.dart';
 import 'package:foodcare/screens/home.dart';
 import 'package:foodcare/screens/perfil.dart';
 import 'package:foodcare/screens/telagrafico2.dart';
+import 'package:foodcare/screens/insere_alimento.dart';
 import 'package:foodcare/screens/dieta.dart';
 import 'package:foodcare/widgets/bar_chart_sample.dart';
 import 'package:foodcare/widgets/pie_chart_sample.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: new Inicio(),
+      home: new Dieta(),
       routes: {
         "/cadastro": (context) => Cadastro1(),
         "/cadastro2": (context) => Cadastro2(),
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
         "/home": (context) => PieChartPage2(),
         "/grafico": (context) => PieChartPage2(),
         "/perfil": (context) => PerfilApp(),
+        "/refeicao":  (context) => InsereAlimento(),
+        "/dieta":  (context) => Dieta(),
       }
     );
   }
