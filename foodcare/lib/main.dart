@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: new Dieta(),
+      home: new Inicio(),
       routes: {
         "/cadastro": (context) => Cadastro1(),
         "/cadastro2": (context) => Cadastro2(),

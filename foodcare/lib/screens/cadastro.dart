@@ -54,6 +54,7 @@ class _Cadastro1State extends State<Cadastro1> {
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 240, 66, 61),
+        title: Text("CADASTRO", style: TextStyle(color: Colors.white),),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -62,49 +63,60 @@ class _Cadastro1State extends State<Cadastro1> {
             //key: _formKey,
             child: Column(
               children: <Widget> [
-                Container(
-                  padding: EdgeInsets.only(top:80),
+                SizedBox(
+                  height: 100,
+                ),
+                SizedBox(child: Image.asset('assets/images/logoLogin.png')),
+                Card(
+                   child: Column(
+                   children: <Widget> [
+                      Container(
+                  padding: EdgeInsets.all(40),
                   child: TextFormField(
                     controller: _nomeController,
                     keyboardType: TextInputType.name,
                     // ignore: prefer_const_constructors
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Nome: ",
-                        hintStyle: TextStyle(color: Colors.black),
+                        labelText: "Nome",
+                        icon: Icon(Icons.person)
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top:80),
+                  padding: EdgeInsets.all(40),
                   child: TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.black),
+                       labelText: "Email",
+                       icon: Icon(Icons.email_outlined)
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Container(
-                   padding: EdgeInsets.only(top:80),
+                   padding: EdgeInsets.all(40),
                   child: TextFormField(
                     controller: _senhaController,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Senha",
-                        hintStyle: TextStyle(color: Colors.black),
+                        labelText: "Senha",
+                        icon: Icon(Icons.password_outlined)
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
+                   ]
+                  )
+                ),
+               
                 Container(
-                  padding: EdgeInsets.only(top: 50),
+                  padding: EdgeInsets.all(40),
                   child:
                     TextButton(
                       style: TextButton.styleFrom(

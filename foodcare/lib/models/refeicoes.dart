@@ -10,11 +10,11 @@ Refeicoes ({
 factory Refeicoes.fromJson(Map<String, dynamic> json) {
     return Refeicoes(
       id: json["id"],
-      alimentos: json["refeicao"],
+      alimentos: json["alimentos"],
     );
   }
 Map<String, dynamic> get toJson => {
         "id": id.toString(),
-        "refeicao": alimentos,
+        "alimentos": alimentos,
       };
 }

@@ -6,6 +6,7 @@ import 'package:foodcare/models/usuario_login.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
 import 'package:foodcare/models/alimento.dart';
 import 'package:foodcare/models/refeicoes.dart';
+import 'package:foodcare/models/quantidades.dart';
 
 class Network {
 
@@ -37,10 +38,10 @@ class Network {
     print(usuarioConsultado);
     return usuarioConsultado;
   }
-  Future<Refeicoes?> getRefeicao({required Alimento refeicao}) async {
+  Future<Refeicoes?> getRefeicao({required Refeicoes refeicao, required int id}) async {
     Refeicoes? refeicaoConsultada;
     try {
-      Response refeicaoData = await _dio.get(_baseUrl + '/usuarios/' + '' + 'refeicoes' );
+      Response refeicaoData = await _dio.get(_baseUrl + '/usuarios/' + id.toString() + '/refeicoes' );
       print('User Info: ${refeicaoData.data}');
 
       if (refeicaoData.data == null)
@@ -61,6 +62,56 @@ class Network {
     }
     print(refeicaoConsultada);
     return refeicaoConsultada;
+  }
+  Future<Quantidades?> getQtdNecessaria({required Quantidades quantidades, required int id}) async {
+    Quantidades? quantidadeConsultada;
+    try {
+      Response qtdData = await _dio.get(_baseUrl + '/usuarios/' + id.toString() + '/necessidades' );
+      print('User Info: ${qtdData.data}');
+
+      if (qtdData.data == null)
+        return null;
+      
+      quantidadeConsultada = Quantidades.fromJson(qtdData.data);
+
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print('Dio error!');
+        print('STATUS: ${e.response?.statusCode}');
+        print('DATA: ${e.response?.data}');
+        print('HEADERS: ${e.response?.headers}');
+      } else {
+        print('error sending request');
+        print(e.message);
+      }
+    }
+    print(quantidadeConsultada);
+    return quantidadeConsultada;
+  }
+  Future<Quantidades?> getQtdConsumida({required Quantidades quantidades, required int id}) async {
+    Quantidades? quantidadeConsultada;
+    try {
+      Response qtdData = await _dio.get(_baseUrl + '/usuarios/' + id.toString() + '/necessidades' );
+      print('User Info: ${qtdData.data}');
+
+      if (qtdData.data == null)
+        return null;
+      
+      quantidadeConsultada = Quantidades.fromJson(qtdData.data);
+
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print('Dio error!');
+        print('STATUS: ${e.response?.statusCode}');
+        print('DATA: ${e.response?.data}');
+        print('HEADERS: ${e.response?.headers}');
+      } else {
+        print('error sending request');
+        print(e.message);
+      }
+    }
+    print(quantidadeConsultada);
+    return quantidadeConsultada;
   }
 
 Future<UsuarioCadastro?> criaUser({required UsuarioCadastro usuarioCadastro}) async {

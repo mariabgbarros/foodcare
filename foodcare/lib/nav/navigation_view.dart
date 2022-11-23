@@ -20,7 +20,7 @@ class NavigationView extends StatefulWidget {
 class _NavigationViewState extends State<NavigationView> {
   int paginaAtual = 0;
   late PageController pageController;
-  late UsuarioLogin usuarioLogin;
+  late UsuarioCadastro usuarioCadastro;
   var isLogado = true;
 
   @override
@@ -38,7 +38,7 @@ class _NavigationViewState extends State<NavigationView> {
 
   @override
   Widget build(BuildContext context) {
-    UsuarioLogin? map = ModalRoute.of(context)!.settings.arguments as UsuarioLogin?;
+    UsuarioCadastro? map = ModalRoute.of(context)!.settings.arguments as UsuarioCadastro?;
 
     return Scaffold(
         body: PageView(
@@ -47,15 +47,14 @@ class _NavigationViewState extends State<NavigationView> {
           controller: pageController,
           children: [ // telas
             const PieChartPage2(), //home
-            const Dieta(),
+             Dieta(),
             PerfilApp(),
             ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromARGB(255, 240, 66, 61),
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.camera_alt_outlined,), label: 'Escanear'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'), // grafico
             BottomNavigationBarItem(icon: Icon(Icons.apple), label: 'Dieta'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
           ],

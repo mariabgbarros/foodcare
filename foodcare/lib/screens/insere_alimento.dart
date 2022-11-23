@@ -72,8 +72,6 @@ class _InsereAlimentoState extends State<InsereAlimento> {
                    padding: EdgeInsets.only(top:50),
                   child: TextFormField(
                     controller: _qtdAlimentoController,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Quantidade (g)",
@@ -97,29 +95,12 @@ class _InsereAlimentoState extends State<InsereAlimento> {
                         ),
                       ),
                       onPressed: () {
-                        
-                      },
-                    ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 50),
-                  child:
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 255, 98, 39),
-                      ),
-                      child: Text(
-                        'VERIFICAR DIETA ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                      ),
-                      onPressed: () {
                         Navigator.pushReplacementNamed(
                           context,
-                          "/dieta",
+                          "/login",
                         );
+                        //refeicao = new Refeicoes(alimentos: _alimentoController.text + _qtdAlimentoController.text, );
+                        
                       },
                     ),
                 ),

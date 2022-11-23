@@ -94,13 +94,14 @@ class _Cadastro2State extends State<Cadastro2>{
      String nome = data["nome"];
      String email = data["email"];
      String senha = data["senha"];
-     int objetivo = 0;
+     int objetivo = 2;
     String sexo = "Feminino";
     UsuarioCadastro usuario_cadastro;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 240, 66, 61),
+        title: Text("CADASTRO", style: TextStyle(color: Colors.white),),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -125,8 +126,7 @@ class _Cadastro2State extends State<Cadastro2>{
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Data de Nascimento: (YYYY-MM-DD) ",
-                        hintStyle: TextStyle(color: Colors.black),
+                        labelText: "Data de Nascimento: (YYYY-MM-DD) ",
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -138,8 +138,7 @@ class _Cadastro2State extends State<Cadastro2>{
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Peso (kg): ",
-                        hintStyle: TextStyle(color: Colors.black),
+                        labelText: "Peso (kg)",
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -151,8 +150,7 @@ class _Cadastro2State extends State<Cadastro2>{
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Altura (cm): ",
-                        hintStyle: TextStyle(color: Colors.black),
+                        labelText: "Altura (cm)",
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -245,6 +243,14 @@ class _Cadastro2State extends State<Cadastro2>{
                                 onChanged: (escolha) {
                                   valueObj
                                       .value = escolha.toString();
+                                  print(value);
+                                  if (escolha.toString() == 'Perder massa')
+                                  {objetivo = 1;}
+                                  if (escolha.toString() == 'Manter massa')
+                                  {objetivo = 2;}
+                                  if (escolha.toString() == 'Ganhar massa')
+                                  {objetivo = 3;}
+                                  
                                 }));
                       }), 
                       Container(
@@ -268,8 +274,6 @@ class _Cadastro2State extends State<Cadastro2>{
                         );
                         usuario_cadastro = new UsuarioCadastro(nome: nome, email: email, senha: senha, data_nasc: _anoController.text, peso: int.parse(_pesoController.text), altura: int.parse(_alturaController.text),sexo: sexo, objetivos: objetivo);
                         _network.criaUser(usuarioCadastro: usuario_cadastro);
-                        
-                        _showDialog();
                       }
                     ),
                   ), 

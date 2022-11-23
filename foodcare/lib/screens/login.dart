@@ -60,6 +60,8 @@ class _LoginState extends State<Login> {
       backgroundColor: Color.fromARGB(255, 252, 240, 240),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 240, 66, 61),
+        title: Text("LOGIN", style: TextStyle(color: Colors.white),),
+
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -68,69 +70,80 @@ class _LoginState extends State<Login> {
             //key: _formKey,
             child: Column(
               children: <Widget> [
-                
-                Container(
-                  padding: EdgeInsets.only(top:80),
-                  child: TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.black),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                SizedBox(
+                  height: 100,
                 ),
-                Container(
-                   padding: EdgeInsets.only(top:50),
-                  child: TextFormField(
-                    controller: _senhaController,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Senha",
-                        hintStyle: TextStyle(color: Colors.black),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 50),
-                  child:
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 255, 98, 39),
-                      ),
-                      child: Text(
-                        'LOGIN',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                SizedBox(child: Image.asset('assets/images/logoLogin.png')),
+                Card(
+                  child: Column(
+                    children: <Widget> [
+                      Container(
+                      padding: EdgeInsets.all(40),
+                      child: TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Email",
+                            icon: Icon(Icons.email_outlined),
+                            iconColor: Color.fromARGB(255, 240, 66, 61),
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      onPressed: () {
-                        UsuarioCadastro user = new UsuarioCadastro(nome: "", email: _emailController.text, senha: _senhaController.text, data_nasc: "", peso: 0, altura: 0, sexo: " ", objetivos: 2) ;
-
-                        UsuarioCadastro? usuarioConsultado;
-                        _network.getUsuario(usuario: user).then( (resultado) {
-                          if (resultado == null) {
-                            _showDialog();
-                          } else if (resultado.senha != _senhaController.text) {
-                              _showDialog();
-                            }
-                          else {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              "/perfil",
-                              arguments: {"usuario": resultado}
-                            );
-                          }
-                        });
-                      },
                     ),
+                  Container(
+                    padding: EdgeInsets.all(40),
+                    child: TextFormField(
+                      controller: _senhaController,
+                      obscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.key_off_outlined),
+                          labelText: "Senha",
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  
+                    ]
+                  )
                 ),
+                Container(
+                    padding: EdgeInsets.all(40),
+                    child:
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 255, 98, 39),
+                        ),
+                        child: Text(
+                          'LOGIN',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        onPressed: () {
+                          UsuarioCadastro user = new UsuarioCadastro(nome: "", email: _emailController.text, senha: _senhaController.text, data_nasc: "", peso: 0, altura: 0, sexo: " ", objetivos: 2) ;
+
+                          UsuarioCadastro? usuarioConsultado;
+                          _network.getUsuario(usuario: user).then( (resultado) {
+                            if (resultado == null) {
+                              _showDialog();
+                            } else if (resultado.senha != _senhaController.text) {
+                                _showDialog();
+                              }
+                            else {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                "/dieta",
+                                arguments: {"usuario": resultado}
+                              );
+                            }
+                          });
+                        },
+                      ),
+                      ),
               ],
             ),
           )

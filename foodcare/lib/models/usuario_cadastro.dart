@@ -1,4 +1,5 @@
 class UsuarioCadastro {
+  final int id;
   final String nome;
   final String email;
   final String senha;
@@ -10,6 +11,7 @@ class UsuarioCadastro {
 
 
 UsuarioCadastro({
+    this.id = 0,
     required this.nome,
     required this.email,
     required this.senha,
@@ -23,6 +25,7 @@ UsuarioCadastro({
 
 factory UsuarioCadastro.fromJson(Map<String, dynamic> json) {
     return UsuarioCadastro(
+      id: json["id"],
       nome: json["nome"],
       email: json["email"],
       senha: json["senha"],

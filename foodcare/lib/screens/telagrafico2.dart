@@ -13,18 +13,20 @@ class PieChartPage2 extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => PieChartPage2State();
-   //Map data = {};
-
-    //data = ModalRoute.of(context)!.settings.arguments as Map;
-
-    //UsuarioCadastro user = data["usuario"];
-    //print(user);
+   
 }
 
 class PieChartPage2State extends State {
   int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
+    Map data = {};
+
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
+    UsuarioCadastro user = data["usuario"];
+
+    print(user);
     return DefaultTabController(
       length: 2, 
       child: Scaffold(
@@ -39,7 +41,7 @@ class PieChartPage2State extends State {
       ),
       body: TabBarView(
         children: [
-          Center(
+          Center( 
             child: AspectRatio(
               aspectRatio: 1.3,
               child: Card(
@@ -276,7 +278,7 @@ class PieChartPage2State extends State {
           case 0:
             return PieChartSectionData(
               color: color0.withOpacity(opacity),
-              value: 60,
+              value: 80,
               title: '',
               radius: 80,
               titleStyle: const TextStyle(
