@@ -13,9 +13,7 @@ import 'package:foodcare/widgets/bar_chart_sample.dart';
 import 'package:foodcare/widgets/pie_chart_sample.dart';
 
 void main() {
-  runApp(const MyApp(
-
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,20 +22,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: new Inicio(),
-      routes: {
-        "/cadastro": (context) => Cadastro1(),
-        "/cadastro2": (context) => Cadastro2(),
-        "/login": (context) => Login(),
-        "/home": (context) => PieChartPage2(),
-        "/grafico": (context) => PieChartPage2(),
-        "/perfil": (context) => PerfilApp(),
-        "/refeicao":  (context) => InsereAlimento(),
-        "/dieta":  (context) => Dieta(),
-      }
-    );
+    return MaterialApp(title: 'Flutter Demo', home: new Inicio(), routes: {
+      "/cadastro": (context) => Cadastro1(),
+      "/cadastro2": (context) => Cadastro2(),
+      "/login": (context) => Login(),
+      "/home": (context) => PieChartPage2(),
+      "/grafico": (context) => PieChartPage2(),
+      "/perfil": (context) => PerfilApp(),
+      "/insereAlimento": (context) => InsereAlimento(),
+      "/dieta": (context) => Dieta(),
+    });
   }
 }
 

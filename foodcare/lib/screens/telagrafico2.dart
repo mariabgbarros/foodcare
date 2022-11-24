@@ -7,139 +7,223 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcare/widgets/indicators_widget.dart';
 import 'package:foodcare/models/usuario_cadastro.dart';
+import 'package:foodcare/models/quantidades.dart';
+import 'package:foodcare/network/network.dart';
 
 class PieChartPage2 extends StatefulWidget {
   const PieChartPage2({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => PieChartPage2State();
-   
 }
 
 class PieChartPage2State extends State {
   int touchedIndex = -1;
+
+  UsuarioCadastro usuario_cadastro = new UsuarioCadastro(
+      nome: "",
+      email: "",
+      senha: "",
+      data_nasc: "",
+      peso: 0,
+      altura: 0,
+      sexo: "",
+      objetivos: 2);
+  int valorCaloriaConsumida = 0;
+  int valorCaloriaNecessaria = 0;
+  int valorProteinaConsumida = 0;
+  int valorLipidioConsumido = 0;
+  int valorCarbConsumido = 0;
+  int valorProteinaNecessaria = 0;
+  int valorLipidioNecessario = 0;
+  int valorCarbNecessario = 0;
+
   @override
   Widget build(BuildContext context) {
+    final _network = Network();
+
+    Quantidades qtdConsumida =
+        new Quantidades(qtd_cal: 0, qtd_prot: 0, qtd_lip: 0, qtd_carb: 0);
     Map data = {};
 
     data = ModalRoute.of(context)!.settings.arguments as Map;
 
-    UsuarioCadastro user = data["usuario"];
+    usuario_cadastro = data["usuario"];
 
-    print(user);
+    _network
+        .getQtdConsumida(quantidades: qtdConsumida, id: usuario_cadastro.id)
+        .then((resultado) {
+      print(usuario_cadastro.id);
+
+      setState(() {
+        if (resultado == null) {
+          valorCaloriaConsumida = 0;
+        } else {
+          valorCaloriaConsumida = resultado.qtd_cal;
+          valorProteinaConsumida = resultado.qtd_prot;
+          valorLipidioConsumido = resultado.qtd_lip;
+          valorCarbConsumido = resultado.qtd_carb;
+        }
+      });
+    });
+    _network
+        .getQtdNecessaria(quantidades: qtdConsumida, id: usuario_cadastro.id)
+        .then((resultado) {
+      print(usuario_cadastro.id);
+
+      setState(() {
+        if (resultado == null) {
+          valorCaloriaConsumida = 0;
+        } else {
+          valorCaloriaNecessaria = resultado.qtd_cal;
+          valorProteinaNecessaria = resultado.qtd_prot;
+          valorLipidioNecessario = resultado.qtd_lip;
+          valorCarbNecessario = resultado.qtd_carb;
+        }
+      });
+    });
+    print(usuario_cadastro);
     return DefaultTabController(
-      length: 2, 
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 240, 66, 61),
-          bottom: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.pie_chart_outline_outlined)),
-              Tab(icon: Icon(Icons.bar_chart_outlined)),
-            ]
-          )
-      ),
-      body: TabBarView(
-        children: [
-          Center( 
-            child: AspectRatio(
-              aspectRatio: 1.3,
-              child: Card(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        length: 2,
+        child: Scaffold(
+            appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 240, 66, 61),
+                bottom: TabBar(tabs: [
+                  Tab(icon: Icon(Icons.pie_chart_outline_outlined)),
+                  Tab(icon: Icon(Icons.bar_chart_outlined)),
+                ])),
+            body: TabBarView(
+              children: [
+                Center(
+                    child: AspectRatio(
+                  aspectRatio: 1.3,
+                  child: Card(
+                    color: Colors.white,
+                    child: Column(
                       children: <Widget>[
-                        Indicator(
-                          color: Color.fromARGB(255, 152, 20, 20),
-                          text: 'One',
-                          isSquare: false,
-                          size: touchedIndex == 0 ? 18 : 16,
-                          textColor: touchedIndex == 0 ? Colors.black : Colors.grey,
+                        const SizedBox(
+                          height: 10,
                         ),
-                        Indicator(
-                          color: Color.fromARGB(255, 202, 65, 65),
-                          text: 'Two',
-                          isSquare: false,
-                          size: touchedIndex == 1 ? 18 : 16,
-                          textColor: touchedIndex == 1 ? Colors.black : Colors.grey,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Indicator(
+                              color: Color.fromARGB(255, 152, 20, 20),
+                              text: 'One',
+                              isSquare: false,
+                              size: touchedIndex == 0 ? 18 : 16,
+                              textColor: touchedIndex == 0
+                                  ? Colors.black
+                                  : Colors.grey,
+                            ),
+                            Indicator(
+                              color: Color.fromARGB(255, 202, 65, 65),
+                              text: 'Two',
+                              isSquare: false,
+                              size: touchedIndex == 1 ? 18 : 16,
+                              textColor: touchedIndex == 1
+                                  ? Colors.black
+                                  : Colors.grey,
+                            ),
+                            Indicator(
+                              color: const Color.fromARGB(255, 210, 116, 72),
+                              text: 'Three',
+                              isSquare: false,
+                              size: touchedIndex == 2 ? 18 : 16,
+                              textColor: touchedIndex == 2
+                                  ? Colors.black
+                                  : Colors.grey,
+                            ),
+                          ],
                         ),
-                        Indicator(
-                          color: const Color.fromARGB(255, 210, 116, 72),
-                          text: 'Three',
-                          isSquare: false,
-                          size: touchedIndex == 2 ? 18 : 16,
-                          textColor: touchedIndex == 2 ? Colors.black : Colors.grey,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Expanded(
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: PieChart(
+                              PieChartData(
+                                  pieTouchData: PieTouchData(touchCallback:
+                                      (FlTouchEvent event, pieTouchResponse) {
+                                    setState(() {
+                                      if (!event.isInterestedForInteractions ||
+                                          pieTouchResponse == null ||
+                                          pieTouchResponse.touchedSection ==
+                                              null) {
+                                        touchedIndex = -1;
+                                        return;
+                                      }
+                                      touchedIndex = pieTouchResponse
+                                          .touchedSection!.touchedSectionIndex;
+                                    });
+                                  }),
+                                  startDegreeOffset: 180,
+                                  borderData: FlBorderData(
+                                    show: false,
+                                  ),
+                                  sectionsSpace: 1,
+                                  centerSpaceRadius: 0,
+                                  sections: showingSections()),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Expanded(
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: PieChart(
-                          PieChartData(
-                              pieTouchData: PieTouchData(touchCallback:
-                                  (FlTouchEvent event, pieTouchResponse) {
-                                setState(() {
-                                  if (!event.isInterestedForInteractions ||
-                                      pieTouchResponse == null ||
-                                      pieTouchResponse.touchedSection == null) {
-                                    touchedIndex = -1;
-                                    return;
-                                  }
-                                  touchedIndex = pieTouchResponse
-                                      .touchedSection!.touchedSectionIndex;
-                                });
-                              }),
-                              startDegreeOffset: 180,
-                              borderData: FlBorderData(
-                                show: false,
-                              ),
-                              sectionsSpace: 1,
-                              centerSpaceRadius: 0,
-                              sections: showingSections()),
-                        ),
+                  ),
+                )),
+                Center(
+                    child: AspectRatio(
+                  aspectRatio: 1.7,
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    child: BarChart(
+                      BarChartData(
+                        barTouchData: barTouchData,
+                        titlesData: titlesData,
+                        borderData: borderData,
+                        barGroups: barGroups,
+                        gridData: FlGridData(show: false),
+                        alignment: BarChartAlignment.spaceAround,
+                        maxY: 1,
                       ),
                     ),
-                  ],
-                ),
-              ),
-            )
-          ),
-          Center(
-            child: AspectRatio(
-              aspectRatio: 1.7,
-              child: Card(
-                elevation: 0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                color: Color.fromARGB(255, 255, 255, 255),
-                child: BarChart(
-                  BarChartData(
-                    barTouchData: barTouchData,
-                    titlesData: titlesData,
-                    borderData: borderData,
-                    barGroups: barGroups,
-                    gridData: FlGridData(show: false),
-                    alignment: BarChartAlignment.spaceAround,
-                    maxY: 20,
                   ),
-                ),
-              ),
-            )
-          ),
-        ],
-      )
-      )
-    );
+                )),
+                IconButton(
+                    onPressed: () {
+                      onPressed:
+                      () {
+                        Navigator.pushReplacementNamed(context, "/perfil",
+                            arguments: {"usuario": usuario_cadastro});
+                      };
+                    },
+                    icon: Icon(Icons.person)),
+                IconButton(
+                    //dieta
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, "/dieta",
+                          arguments: {"usuario": usuario_cadastro});
+                    },
+                    icon: Icon(Icons.apple_outlined)),
+                IconButton(
+                    //telagrafico
+                    onPressed: () {
+                      onPressed:
+                      () {
+                        Navigator.pushReplacementNamed(context, "/grafico",
+                            arguments: {"usuario": usuario_cadastro});
+                      };
+                    },
+                    icon: Icon(Icons.home))
+              ],
+            )));
   }
+
   BarTouchData get barTouchData => BarTouchData(
         enabled: false,
         touchTooltipData: BarTouchTooltipData(
@@ -178,7 +262,7 @@ class PieChartPage2State extends State {
         text = 'Carboidrato';
         break;
       case 2:
-        text = 'Gordura';
+        text = 'Lipídio';
         break;
       default:
         text = '';
@@ -226,12 +310,13 @@ class PieChartPage2State extends State {
 
   List<BarChartGroupData> get barGroups => [
         BarChartGroupData(
-          x: 0,
+          x: 0, //proteina
           barRods: [
             BarChartRodData(
               width: 35,
               borderRadius: BorderRadius.all(Radius.circular((2))),
-              toY: 8,
+              toY: valorProteinaConsumida.toDouble() /
+                  valorProteinaNecessaria.toDouble(),
               gradient: _barsGradient,
             )
           ],
@@ -243,7 +328,8 @@ class PieChartPage2State extends State {
             BarChartRodData(
               width: 35,
               borderRadius: BorderRadius.all(Radius.circular((2))),
-              toY: 10,
+              toY: valorCarbConsumido.toDouble() /
+                  valorCarbNecessario.toDouble(),
               gradient: _barsGradient,
             )
           ],
@@ -255,30 +341,29 @@ class PieChartPage2State extends State {
             BarChartRodData(
               width: 35,
               borderRadius: BorderRadius.all(Radius.circular((2))),
-              toY: 14,
+              toY: valorLipidioConsumido.toDouble() /
+                  valorLipidioNecessario.toDouble(),
               gradient: _barsGradient,
             )
           ],
           showingTooltipIndicators: [0],
         ),
-       
-      ];  
+      ];
   List<PieChartSectionData> showingSections() {
     return List.generate(
-      3,
+      2,
       (i) {
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
 
         const color0 = Color.fromARGB(255, 152, 20, 20);
-        const color1 = Color.fromARGB(255, 202, 65, 65);
-        const color2 = Color.fromARGB(255, 210, 116, 72);
+        const color1 = Color(0xFFFFFFFF);
 
         switch (i) {
           case 0:
             return PieChartSectionData(
               color: color0.withOpacity(opacity),
-              value: 80,
+              value: valorCaloriaConsumida.toDouble(),
               title: '',
               radius: 80,
               titleStyle: const TextStyle(
@@ -293,7 +378,8 @@ class PieChartPage2State extends State {
           case 1:
             return PieChartSectionData(
               color: color1.withOpacity(opacity),
-              value: 25,
+              value:
+                  (valorCaloriaNecessaria - valorCaloriaConsumida).toDouble(),
               title: '',
               radius: 80,
               titleStyle: const TextStyle(
@@ -303,29 +389,12 @@ class PieChartPage2State extends State {
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
                   ? BorderSide(color: const Color(0xffffffff), width: 6)
-                  : BorderSide(color: color2.withOpacity(0)),
+                  : BorderSide(color: color1.withOpacity(0)),
             );
-          case 2:
-            return PieChartSectionData(
-              color: color2.withOpacity(opacity),
-              value: 25,
-              title: '',
-              radius: 80,
-              titleStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff4c3788)),
-              titlePositionPercentageOffset: 0.6,
-              borderSide: isTouched
-                  ? BorderSide(color: const Color(0xffffffff), width: 6)
-                  : BorderSide(color: color2.withOpacity(0)),
-            );
-          
           default:
             throw Error();
         }
       },
     );
-  
   }
 }
